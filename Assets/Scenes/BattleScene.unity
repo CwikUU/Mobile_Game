@@ -911,7 +911,6 @@ GameObject:
   m_Component:
   - component: {fileID: 760911180}
   - component: {fileID: 760911179}
-  - component: {fileID: 760911181}
   m_Layer: 0
   m_Name: MemoryControl
   m_TagString: Untagged
@@ -933,9 +932,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Memory
   boardGrid: {fileID: 1485937555}
   cards: []
-  cardDB: {fileID: 760911181}
+  cardDB: {fileID: 0}
   cardTaked: []
-  cardShowed: []
+  cardShowed1: []
+  showingCards: 0
 --- !u!4 &760911180
 Transform:
   m_ObjectHideFlags: 0
@@ -951,51 +951,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &760911181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760911178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c3c3148b16b804086956e6a35ad1fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardDB
-  cardInfos:
-  - cardName: 1
-    cardType: 1
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 2
-    cardType: 2
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 3
-    cardType: 3
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 4
-    cardType: 4
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 5
-    cardType: 5
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 6
-    cardType: 6
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 7
-    cardType: 7
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  - cardName: 8
-    cardType: 8
-    equipped: 1
-    cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
 --- !u!1 &1485937555
 GameObject:
   m_ObjectHideFlags: 0

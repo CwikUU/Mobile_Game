@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,22 +10,35 @@ public class Memory : MonoBehaviour
 {
     public GameObject boardGrid;
     public List<CardInfo> cards = new();
-    public CardDB cardDB;
 
     public List<CardInfo> cardTaked = new();
-    public List<GameObject> cardShowed = new();
-
+    public List<GameObject> cardShowed1 = new();
+    public bool showingCards = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for (int i = 0; i < cardDB.cardInfos.Length; i++)
+        PlayerInfo playerInfo = GameObject.Find("Info").GetComponent<PlayerInfo>();
+        CardDB cardDB = GameObject.Find("Info").GetComponent<CardDB>();
+
+
+        foreach (var card in playerInfo.deck)
         {
-            if (cardDB.cardInfos[i].equipped)
+            cards.Add(card);
+        }
+
+        if (cards.Count < 8)
+        {
+            int left = 8 - cards.Count;
+
+            int blankID = System.Array.FindIndex(cardDB.cardInfos, x => x.cardType == "blank");
+            int monsterID = System.Array.FindIndex(cardDB.cardInfos, x => x.cardType == "monster");
+            for (int i = 0; i < left - 1; i++)
             {
-                cards.Add(cardDB.cardInfos[i]);
+                cards.Add(cardDB.cardInfos[blankID]); // add blank cards if not enough cards in deck
             }
+            cards.Add(cardDB.cardInfos[monsterID]); // add monster card if not enough cards in deck
         }
 
         for (int i = 0; i < 8; i++)
@@ -34,26 +48,23 @@ public class Memory : MonoBehaviour
 
     }
 
-    private void Update()
+
+    private void FixedUpdate()
     {
-        if (cardShowed.Count == 2)
+        if (cardShowed1.Count == 2)
         {
-            if (cardShowed[0].name == cardShowed[1].name)
+            if (cardShowed1[0].name == cardShowed1[1].name)   // cards matched
             {
-                cardTaked.Add(cards.Find(x => x.cardName == cardShowed[0].name));
-                foreach(var item in cardShowed)
+                cardTaked.Add(cards.Find(x => x.cardName == cardShowed1[0].name));
+                foreach (var item in cardShowed1)
                 {
                     item.GetComponent<Button>().interactable = false;
                 }
-                cardShowed.Clear();
+                cardShowed1.Clear();
             }
-            else
+            else                // cards not matched
             {
-                foreach (var item in cardShowed)
-                {
-                    item.GetComponent<CardShowing>().cardAvers.SetActive(false);
-                }
-                cardShowed.Clear();
+                if (!showingCards) StartCoroutine(ClearNotMatched(.5f));
             }
         }
     }
@@ -87,5 +98,20 @@ public class Memory : MonoBehaviour
             TMPro.TextMeshProUGUI texts = card.GetComponentInChildren<TMPro.TextMeshProUGUI>();
             texts.text = card.name;
         }
+    }
+
+    IEnumerator ClearNotMatched(float seconds)
+    {
+        showingCards = true;
+        yield return new WaitForSeconds(seconds);
+        Debug.Log("1s");
+        foreach (var item in cardShowed1)
+        {
+            item.GetComponent<CardShowing>().cardAvers.SetActive(false);
+            item.GetComponent<Button>().interactable = true;
+        }
+        Debug.Log("cleared");
+        cardShowed1.Clear();
+        showingCards = false;
     }
 }
