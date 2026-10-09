@@ -26,8 +26,11 @@ public class ClassDB : MonoBehaviour
             {
                 playerInfo.className = c.className;
                 playerInfo.health = c.classHealth;
+                playerInfo.healthMax = c.classHealth;
                 playerInfo.stamina = c.classStamina;
+                playerInfo.staminaMax = c.classStamina;
                 playerInfo.mana = c.classMana;
+                playerInfo.manaMax = c.classMana;
                 playerInfo.money = c.classMoney;
                 // Add starting cards to the player's deck
                 foreach (string card in c.startCards)

@@ -37,4 +37,9 @@ public class TownControl : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("BattleScene");
     }
+
+    public void DungeonScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DungeonScene");
+    }
 }
