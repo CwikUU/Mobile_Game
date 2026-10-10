@@ -15,8 +15,21 @@ public class PlayerInfo : MonoBehaviour
 
     public List<CardInfo> deck = new List<CardInfo>();
 
+    public GameObject dungeonMap;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        GameObject info = GameObject.Find("InfoG");
+
+        if (info == null)
+        {
+            this.gameObject.name = "InfoG";
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

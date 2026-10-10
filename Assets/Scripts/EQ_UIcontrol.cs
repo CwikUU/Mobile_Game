@@ -24,7 +24,7 @@ public class EQ_UIcontrol : MonoBehaviour
         EQui.SetActive(false);
         Options.SetActive(false);
 
-        player = GameObject.Find("Info").GetComponent<PlayerInfo>();
+        player = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
     }
 
     private void Update()
