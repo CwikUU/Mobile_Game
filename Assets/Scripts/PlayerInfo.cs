@@ -16,6 +16,7 @@ public class PlayerInfo : MonoBehaviour
     public List<CardInfo> deck = new List<CardInfo>();
 
     public GameObject dungeonMap;
+    public bool dungeonIsGenerated = false;
 
     private void Awake()
     {

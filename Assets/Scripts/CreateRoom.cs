@@ -24,50 +24,92 @@ public class CreateRoom : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DungeonControl dungeonControl = GameObject.Find("DungeonControl").GetComponent<DungeonControl>();
+        DungeonControl dungeonControl = GameObject.Find("SceneControl").GetComponent<DungeonControl>();
 
-        ///  mysl tworzenie lsity z pustymi jeszcze pokijami     kazdy startowy pokoj to monster abo random (jesli jest random) reszta to losowo z pozostalych wonych pokoi
+        PlayerInfo playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
 
-        if (this.gameObject.name.Contains("5"))
+        if (playerInfo.dungeonIsGenerated == false)
         {
-            Instantiate(dungeonControl.rooms[0], bossRoom.transform);
-
-            for (int i = 0; i < restAmount; i++)
+            foreach (Transform child in transform)
             {
-                roomList.Add(dungeonControl.rooms[1]);
+                emptyRooms.Add(child.gameObject);
             }
 
-            for (int i = 0; i < monsterAmount; i++)
+            if (this.gameObject.name.Contains("5"))
             {
-                roomList.Add(dungeonControl.rooms[2]);
+                CreateDungeon(5, dungeonControl);
+            }
+            if (this.gameObject.name.Contains("7"))
+            {
+                CreateDungeon(7, dungeonControl);
+            }
+            if (this.gameObject.name.Contains("9"))
+            {
+                CreateDungeon(9, dungeonControl);
             }
 
-            for (int i = 0; i < lootAmount; i++)
+            playerInfo.dungeonIsGenerated = true;
+            dungeonControl.UpdateDungeon();
+        }
+    }
+
+
+    void CreateDungeon(int size, DungeonControl dungeonControl)
+    {
+        for (int i = 0; i < restAmount; i++) // rest
+        {
+            roomList.Add(dungeonControl.rooms[1]);
+        }
+
+        for (int i = 0; i < monsterAmount; i++)
+        {
+            roomList.Add(dungeonControl.rooms[2]); // monster
+        }
+
+        for (int i = 0; i < lootAmount; i++)
+        {
+            roomList.Add(dungeonControl.rooms[3]); // loot
+        }
+
+        for (int i = 0; i < randomAmount; i++)
+        {
+            roomList.Add(dungeonControl.rooms[4]); // random
+        }
+
+        for (int i = 0; i < bossAmount; i++)
+        {
+            roomList.Add(dungeonControl.rooms[0]); // boss
+        }
+
+        if (roomList.Count < size + 1)
+        {
+            int left = size - roomList.Count;
+            for (int i = 0; i < left; i++)
             {
-                roomList.Add(dungeonControl.rooms[3]);
+                int randomIndex = Random.Range(2, 5);
+                roomList.Add(dungeonControl.rooms[randomIndex]);
             }
+        }
 
-            for (int i = 0; i < randomAmount; i++)
-            {
-                roomList.Add(dungeonControl.rooms[4]);
-            }
+        Instantiate(dungeonControl.rooms[0], bossRoom.transform);
+        int delBoss = emptyRooms.FindIndex(x => x.name == bossRoom.name);
+        emptyRooms.RemoveAt(delBoss);
 
-            for (int i = 0; i < bossAmount; i++)
-            {
-                roomList.Add(dungeonControl.rooms[0]);
-            }
+        for (int i = 0; i < startRoom.Length; i++)
+        {
+            int monsterStart = roomList.FindIndex(x => x.name.Contains("Monster"));
+            Instantiate(roomList[monsterStart], startRoom[i].transform);
+            roomList.RemoveAt(monsterStart);
+            int delRoom = emptyRooms.FindIndex(x => x.name == startRoom[i].name);
+            emptyRooms.RemoveAt(delRoom);
+        }
 
-            if(roomList.Count < 6)
-            {
-                int left = 5 - roomList.Count;
-                for (int i = 0; i < left; i++)
-                {
-                    int randomIndex = Random.Range(2, 5);
-                    roomList.Add(dungeonControl.rooms[randomIndex]);
-                }
-            }
-
-
+        for (int i = emptyRooms.Count - 1; i >= 0; i--)
+        {
+            int randomIndex = Random.Range(0, roomList.Count);
+            Instantiate(roomList[randomIndex], emptyRooms[i].transform);
+            roomList.RemoveAt(randomIndex);
+            emptyRooms.RemoveAt(i);
         }
     }
 }

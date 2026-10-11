@@ -684,6 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6785302618218350751}
+  - component: {fileID: 5606572496085105697}
   m_Layer: 5
   m_Name: room9v3
   m_TagString: Untagged
@@ -720,6 +721,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -92.5}
   m_SizeDelta: {x: 0, y: -185}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5606572496085105697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8868286042549557439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea12aa67b7bc5d6498f345afad921f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreateRoom
+  roomsCreated: 0
+  bossRoom: {fileID: 1203000813166561848}
+  startRoom:
+  - {fileID: 1721263840603013809}
+  - {fileID: 2296030920106359506}
+  bossAmount: 0
+  restAmount: 1
+  monsterAmount: 2
+  lootAmount: 1
+  randomAmount: 1
+  roomList: []
+  emptyRooms: []
 --- !u!1 &9084067600882646292
 GameObject:
   m_ObjectHideFlags: 0

@@ -106,4 +106,11 @@ public class DungeonControl : MonoBehaviour
     {
         Instantiate(dungeonPrefab, dungeonBoard.transform);
     }
+
+    public void UpdateDungeon()
+    {
+        PlayerInfo playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
+        GameObject updatedMap = dungeonBoard.transform.GetChild(0).gameObject;
+        playerInfo.dungeonMap = updatedMap;
+    }
 }
