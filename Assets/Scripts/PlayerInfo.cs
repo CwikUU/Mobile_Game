@@ -33,4 +33,20 @@ public class PlayerInfo : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void SaveCurrentDungeon()
+    {
+        if (dungeonMap != null)
+        {
+            dungeonMap.transform.SetParent(this.transform);
+        }
+    }
+
+    public void LoadCurrentDungeon(GameObject dungBoard)
+    {
+        if (dungeonMap != null)
+        {
+            dungeonMap.transform.SetParent(dungBoard.transform);
+        }
+    }
 }

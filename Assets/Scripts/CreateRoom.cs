@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateRoom : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class CreateRoom : MonoBehaviour
     public int randomAmount = 0; // [4]
 
     [Header("Room List")]
-    public List<GameObject> roomList;
+    public List<string> roomList;
     public List<GameObject> emptyRooms;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,27 +59,27 @@ public class CreateRoom : MonoBehaviour
     {
         for (int i = 0; i < restAmount; i++) // rest
         {
-            roomList.Add(dungeonControl.rooms[1]);
+            roomList.Add(dungeonControl.rooms[1].name);
         }
 
         for (int i = 0; i < monsterAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[2]); // monster
+            roomList.Add(dungeonControl.rooms[2].name); // monster
         }
 
         for (int i = 0; i < lootAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[3]); // loot
+            roomList.Add(dungeonControl.rooms[3].name); // loot
         }
 
         for (int i = 0; i < randomAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[4]); // random
+            roomList.Add(dungeonControl.rooms[4].name); // random
         }
 
         for (int i = 0; i < bossAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[0]); // boss
+            roomList.Add(dungeonControl.rooms[0].name); // boss
         }
 
         if (roomList.Count < size + 1)
@@ -87,18 +88,18 @@ public class CreateRoom : MonoBehaviour
             for (int i = 0; i < left; i++)
             {
                 int randomIndex = Random.Range(2, 5);
-                roomList.Add(dungeonControl.rooms[randomIndex]);
+                roomList.Add(dungeonControl.rooms[randomIndex].name);
             }
         }
 
-        Instantiate(dungeonControl.rooms[0], bossRoom.transform);
+        bossRoom.transform.GetChild(0).gameObject.name = "Boss";
         int delBoss = emptyRooms.FindIndex(x => x.name == bossRoom.name);
         emptyRooms.RemoveAt(delBoss);
 
         for (int i = 0; i < startRoom.Length; i++)
         {
-            int monsterStart = roomList.FindIndex(x => x.name.Contains("Monster"));
-            Instantiate(roomList[monsterStart], startRoom[i].transform);
+            int monsterStart = roomList.FindIndex(x => x.Contains("Monster"));
+            startRoom[i].transform.GetChild(0).gameObject.name = roomList[monsterStart];
             roomList.RemoveAt(monsterStart);
             int delRoom = emptyRooms.FindIndex(x => x.name == startRoom[i].name);
             emptyRooms.RemoveAt(delRoom);
@@ -107,9 +108,37 @@ public class CreateRoom : MonoBehaviour
         for (int i = emptyRooms.Count - 1; i >= 0; i--)
         {
             int randomIndex = Random.Range(0, roomList.Count);
-            Instantiate(roomList[randomIndex], emptyRooms[i].transform);
+            emptyRooms[i].transform.GetChild(0).gameObject.name = roomList[randomIndex];
             roomList.RemoveAt(randomIndex);
             emptyRooms.RemoveAt(i);
+        }
+
+        foreach (Transform child in transform)
+        {
+            if(child.GetChild(0).gameObject.name.Contains("Monster"))
+            {
+                Image image = child.GetChild(0).gameObject.GetComponent<Image>();
+                image.color = Color.grey;
+            }
+            if(child.GetChild(0).gameObject.name.Contains("Loot"))
+            {
+                Image image = child.GetChild(0).gameObject.GetComponent<Image>();
+                image.color = Color.orange;
+            }
+            if(child.GetChild(0).gameObject.name.Contains("Random"))
+            {
+                child.GetChild(0).gameObject.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "?";
+            }
+            if(child.GetChild(0).gameObject.name.Contains("Boss"))
+            {
+                Image image = child.GetChild(0).gameObject.GetComponent<Image>();
+                image.color = Color.darkRed;
+            }
+            if(child.GetChild(0).gameObject.name.Contains("Rest"))
+            {
+                Image image = child.GetChild(0).gameObject.GetComponent<Image>();
+                image.color = Color.lightGreen;
+            }
         }
     }
 }

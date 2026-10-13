@@ -20,7 +20,7 @@ public class DungeonControl : MonoBehaviour
     public GameObject r9v2;
     public GameObject r9v3;
 
-    [Header("Rooms Prefabs")]
+    [Header("Rooms Prefabs")]  /// later change to sprites ans strings lists
     public GameObject[] rooms;
     //public GameObject boss; 0
     //public GameObject rest; 1
@@ -97,7 +97,7 @@ public class DungeonControl : MonoBehaviour
             }
             else
             {
-                CreateDungeon(playerInfo.dungeonMap);
+                playerInfo.LoadCurrentDungeon(dungeonBoard);
             }
         }
     }
@@ -112,5 +112,11 @@ public class DungeonControl : MonoBehaviour
         PlayerInfo playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
         GameObject updatedMap = dungeonBoard.transform.GetChild(0).gameObject;
         playerInfo.dungeonMap = updatedMap;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInfo playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
+        playerInfo.SaveCurrentDungeon();
     }
 }

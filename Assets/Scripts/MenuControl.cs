@@ -47,7 +47,7 @@ public class MenuControl : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.1f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("TownScene");
     }
 }
