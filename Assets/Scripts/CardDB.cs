@@ -4,13 +4,19 @@ using UnityEngine;
 public class LootInfo
 {
     public string lootName;
-    public int lootRarity;
     public string lootDescription;
     public GameObject lootPrefab;
 }
 
 public class CardDB : MonoBehaviour
 {
+    [Header("Eq cards")]
     public CardInfo[] cardInfos;
-    public LootInfo[] lootInfos;
+
+    [Header("Loot cards")]
+    public LootInfo[] common;
+    public LootInfo[] uncommon;
+    public LootInfo[] rare;
+    public LootInfo[] epic;
+    public LootInfo[] legendary;
 }

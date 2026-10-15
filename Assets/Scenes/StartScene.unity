@@ -636,39 +636,86 @@ MonoBehaviour:
     cardType: monster
     equipped: 0
     cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
-  lootInfos:
-  - lootName: trash
-    lootRarity: 0
+  common:
+  - lootName: c1
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: grass
-    lootRarity: 0
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: c2
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: rock
-    lootRarity: 0
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: c3
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: coins
-    lootRarity: 1
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: c4
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: ore
-    lootRarity: 1
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: c5
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: gems
-    lootRarity: 2
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  uncommon:
+  - lootName: uc1
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: chest
-    lootRarity: 3
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: uc2
     lootDescription: 
-    lootPrefab: {fileID: 0}
-  - lootName: item
-    lootRarity: 4
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: uc3
     lootDescription: 
-    lootPrefab: {fileID: 0}
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: uc4
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: uc5
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  rare:
+  - lootName: r1
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: r2
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: r3
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: r4
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: r5
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  epic:
+  - lootName: e1
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: e2
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: e3
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: e4
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: e5
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  legendary:
+  - lootName: l1
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: l2
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: l3
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: l4
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  - lootName: l5
+    lootDescription: 
+    lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
 --- !u!1 &178585002
 GameObject:
   m_ObjectHideFlags: 0
