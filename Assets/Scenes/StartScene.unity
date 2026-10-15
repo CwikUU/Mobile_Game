@@ -557,11 +557,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInfo
   className: 
+  healthMax: 0
   health: 0
+  staminaMax: 0
   stamina: 0
+  manaMax: 0
   mana: 0
   money: 0
   deck: []
+  dungeonMap: {fileID: 0}
+  dungeonIsGenerated: 0
+  loadRoom: 0
 --- !u!4 &153940527
 Transform:
   m_ObjectHideFlags: 0
@@ -630,6 +636,39 @@ MonoBehaviour:
     cardType: monster
     equipped: 0
     cardPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  lootInfos:
+  - lootName: trash
+    lootRarity: 0
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: grass
+    lootRarity: 0
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: rock
+    lootRarity: 0
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: coins
+    lootRarity: 1
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: ore
+    lootRarity: 1
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: gems
+    lootRarity: 2
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: chest
+    lootRarity: 3
+    lootDescription: 
+    lootPrefab: {fileID: 0}
+  - lootName: item
+    lootRarity: 4
+    lootDescription: 
+    lootPrefab: {fileID: 0}
 --- !u!1 &178585002
 GameObject:
   m_ObjectHideFlags: 0

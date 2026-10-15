@@ -1207,11 +1207,11 @@ MonoBehaviour:
   r9v2: {fileID: 966530666147423044, guid: 75d73de08068de04ead9286f46c6fdba, type: 3}
   r9v3: {fileID: 8868286042549557439, guid: 0b13128d397c7d848b95513fa5402510, type: 3}
   rooms:
-  - {fileID: 4314840083856484469, guid: d064b87eb0e5eac49a0496cb09e4d586, type: 3}
-  - {fileID: 907103745695889331, guid: 1f40edbc61b05224693872b6fb93587e, type: 3}
-  - {fileID: 4042476547876402725, guid: d6c0b8b380e799545a03947e80c54cf6, type: 3}
-  - {fileID: 6489961567269731400, guid: 97c1b8069cc8cf24681fa2e77d8ac762, type: 3}
-  - {fileID: 197395516896769969, guid: a7aff08ee8a18b544bfa2a9805c55d9c, type: 3}
+  - Boss
+  - Rest
+  - Monster
+  - Loot
+  - Random
 --- !u!1 &1965576185
 GameObject:
   m_ObjectHideFlags: 0

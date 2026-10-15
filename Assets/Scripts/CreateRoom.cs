@@ -59,27 +59,27 @@ public class CreateRoom : MonoBehaviour
     {
         for (int i = 0; i < restAmount; i++) // rest
         {
-            roomList.Add(dungeonControl.rooms[1].name);
+            roomList.Add(dungeonControl.rooms[1]);
         }
 
         for (int i = 0; i < monsterAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[2].name); // monster
+            roomList.Add(dungeonControl.rooms[2]); // monster
         }
 
         for (int i = 0; i < lootAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[3].name); // loot
+            roomList.Add(dungeonControl.rooms[3]); // loot
         }
 
         for (int i = 0; i < randomAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[4].name); // random
+            roomList.Add(dungeonControl.rooms[4]); // random
         }
 
         for (int i = 0; i < bossAmount; i++)
         {
-            roomList.Add(dungeonControl.rooms[0].name); // boss
+            roomList.Add(dungeonControl.rooms[0]); // boss
         }
 
         if (roomList.Count < size + 1)
@@ -88,7 +88,7 @@ public class CreateRoom : MonoBehaviour
             for (int i = 0; i < left; i++)
             {
                 int randomIndex = Random.Range(2, 5);
-                roomList.Add(dungeonControl.rooms[randomIndex].name);
+                roomList.Add(dungeonControl.rooms[randomIndex]);
             }
         }
 

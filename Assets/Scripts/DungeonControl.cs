@@ -21,7 +21,7 @@ public class DungeonControl : MonoBehaviour
     public GameObject r9v3;
 
     [Header("Rooms Prefabs")]  /// later change to sprites ans strings lists
-    public GameObject[] rooms;
+    public string[] rooms;
     //public GameObject boss; 0
     //public GameObject rest; 1
     //public GameObject monster; 2

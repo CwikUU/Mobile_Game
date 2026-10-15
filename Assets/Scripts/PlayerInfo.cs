@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
 {
+
+    [Header("Player Info")]
     public string className;
     public int healthMax;
     public int health;
@@ -15,8 +17,11 @@ public class PlayerInfo : MonoBehaviour
 
     public List<CardInfo> deck = new List<CardInfo>();
 
+
+    [Header("Dungeon Info")]
     public GameObject dungeonMap;
     public bool dungeonIsGenerated = false;
+    public int loadRoom;
 
     private void Awake()
     {
@@ -47,6 +52,26 @@ public class PlayerInfo : MonoBehaviour
         if (dungeonMap != null)
         {
             dungeonMap.transform.SetParent(dungBoard.transform);
+        }
+    }
+
+    public void Rest()
+    {
+        health += (int)(healthMax * .2f);
+        stamina += (int)(staminaMax * .2f);
+        mana += (int)(manaMax * .1f);
+
+        if (health > healthMax)
+        {
+            health = healthMax;
+        }
+        if (stamina > staminaMax)
+        {
+            stamina = staminaMax;
+        }
+        if (mana > manaMax)
+        {
+            mana = manaMax;
         }
     }
 }

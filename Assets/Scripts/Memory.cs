@@ -8,6 +8,12 @@ using UnityEngine.UI;
 
 public class Memory : MonoBehaviour
 {
+    [Header("Scene Stage")]
+    public bool memoryStage = false;
+    public bool battleStage = false;
+    public int currentRoom = -1;
+
+    [Header("Memory Board")]
     public GameObject boardGrid;
     public List<CardInfo> cards = new();
 
@@ -15,37 +21,27 @@ public class Memory : MonoBehaviour
     public List<GameObject> cardShowed1 = new();
     public bool showingCards = false;
 
+    [Header("Loot")]
+    public List<string> lootList = new(); // 
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerInfo playerInfo = GameObject.Find("Info").GetComponent<PlayerInfo>();
-        CardDB cardDB = GameObject.Find("Info").GetComponent<CardDB>();
+        PlayerInfo playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
+        CardDB cardDB = GameObject.Find("InfoG").GetComponent<CardDB>();
 
+        currentRoom = playerInfo.loadRoom;
 
-        foreach (var card in playerInfo.deck)
+        if (currentRoom == 0 || currentRoom == 2)
         {
-            cards.Add(card);
+            PrepareBattleMemory(playerInfo, cardDB);
         }
 
-        if (cards.Count < 8)
+        if (currentRoom == 3)
         {
-            int left = 8 - cards.Count;
-
-            int blankID = System.Array.FindIndex(cardDB.cardInfos, x => x.cardType == "blank");
-            int monsterID = System.Array.FindIndex(cardDB.cardInfos, x => x.cardType == "monster");
-            for (int i = 0; i < left - 1; i++)
-            {
-                cards.Add(cardDB.cardInfos[blankID]); // add blank cards if not enough cards in deck
-            }
-            cards.Add(cardDB.cardInfos[monsterID]); // add monster card if not enough cards in deck
+            PrepareLootMemory(cardDB);
         }
-
-        for (int i = 0; i < 8; i++)
-        {
-            cards.Add(cards[i]);
-        }
-
     }
 
 
@@ -113,5 +109,36 @@ public class Memory : MonoBehaviour
         Debug.Log("cleared");
         cardShowed1.Clear();
         showingCards = false;
+    }
+
+    void PrepareBattleMemory(PlayerInfo playerInfo, CardDB  cardDB)
+    {
+        foreach (var card in playerInfo.deck)
+        {
+            cards.Add(card);
+        }
+
+        if (cards.Count < 8)
+        {
+            int left = 8 - cards.Count;
+
+            int blankID = System.Array.FindIndex(cardDB.cardInfos, x => x.cardName == "blank");
+            int monsterID = System.Array.FindIndex(cardDB.cardInfos, x => x.cardName == "monster");
+            for (int i = 0; i < left - 1; i++)
+            {
+                cards.Add(cardDB.cardInfos[blankID]); // add blank cards if not enough cards in deck
+            }
+            cards.Add(cardDB.cardInfos[monsterID]); // add monster card if not enough cards in deck
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            cards.Add(cards[i]);
+        }
+    }
+
+    void PrepareLootMemory(CardDB cardDB)
+    {
+        // Implement loot memory preparation logic here
     }
 }
