@@ -9,10 +9,14 @@ using UnityEngine.UI;
 
 public class Memory : MonoBehaviour
 {
-    [Header("Scene Stage")]
+    [Header("Scene Stage Control")]
     public bool memoryStage = false;
+    public GameObject memoryBoard;
     public bool battleStage = false;
+    public GameObject battleBoard;
     public int currentRoom = -1;
+
+    GameObject startMemoryBTN;
 
     [Header("Timer")]
     public float timer = -1000;
@@ -25,17 +29,25 @@ public class Memory : MonoBehaviour
     public List<CardInfo> cardTaked = new();
     public List<GameObject> cardShowed1 = new();
     public bool showingCards = false;
+    public List<string> takedPlayableCards = new();
+    public List<string> takedMonsterCard = new();
 
     [Header("Loot")]
     public List<int> lootList = new();
     public List<LootInfo> lootCards = new();
 
 
+    PlayerInfo playerInfo;
+    CardDB cardDB;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerInfo playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
-        CardDB cardDB = GameObject.Find("InfoG").GetComponent<CardDB>();
+        memoryBoard.SetActive(true);
+        battleBoard.SetActive(false);
+
+        playerInfo = GameObject.Find("InfoG").GetComponent<PlayerInfo>();
+        cardDB = GameObject.Find("InfoG").GetComponent<CardDB>();
 
         currentRoom = playerInfo.loadRoom;
 
@@ -83,6 +95,58 @@ public class Memory : MonoBehaviour
             timer -= Time.deltaTime;
             int left = (int)timer;
             timeLeft.text = left.ToString();
+        }
+
+        if (cardTaked.Count > 0)
+        {
+            for (int i = cardTaked.Count - 1; i >= 0; i--)
+            {
+                if (cardTaked[i].cardName == "monster")
+                {
+                    takedMonsterCard.Add(cardTaked[i].cardName);
+                    cardTaked.RemoveAt(i);
+                    break;
+                }
+
+                foreach (var card in playerInfo.deck)
+                {
+                    if (card.cardName == cardTaked[i].cardName)
+                    {
+                        takedPlayableCards.Add(card.cardName);
+                        cardTaked.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                if (i < cardTaked.Count) cardTaked.RemoveAt(i);
+            }
+        }
+
+        if (takedPlayableCards.Count == playerInfo.deck.Count || (int)timer == 0)
+        {
+            ChangeBoard(1);
+        }
+
+    }
+
+    private void ChangeBoard(int whatBoard) // 0 - Memory , 1 - Battle
+    {
+        timer = -100000;
+        switch (whatBoard)
+        {
+            case 0:
+                battleStage = false;
+                memoryStage = true;
+                startMemoryBTN.SetActive(!startMemoryBTN.activeSelf);
+                memoryBoard.SetActive(!memoryBoard.activeSelf);
+                battleBoard.SetActive(!battleBoard.activeSelf);
+                break;
+            case 1:
+                battleStage = true;
+                memoryStage = false;
+                memoryBoard.SetActive(!memoryBoard.activeSelf);
+                battleBoard.SetActive(!battleBoard.activeSelf);
+                break;
         }
     }
 
@@ -277,7 +341,8 @@ public class Memory : MonoBehaviour
 
     public void StartGame(GameObject btn)
     {
-        if (timer <= -1000)timer = 30;
+        if (timer <= -1000)timer = 3;
+        startMemoryBTN = btn;
         btn.SetActive(false);
     }
 }

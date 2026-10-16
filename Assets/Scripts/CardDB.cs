@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,6 +8,25 @@ public class LootInfo
     public string lootDescription;
     public GameObject lootPrefab;
 }
+
+[System.Serializable]
+public class MonsterAttackTurn  
+{
+    public bool attack;
+    public bool block;
+    public int actionValue;
+}
+
+[System.Serializable]
+public class MonsterInfo
+{
+    public string monsterName;
+    public int monsterHP;
+    [Tooltip("element0 - turn1 , element1 - turn2 , ...")]
+    public MonsterAttackTurn[] attacks;
+    public GameObject monsterPrefab;
+}
+
 
 public class CardDB : MonoBehaviour
 {
@@ -19,4 +39,8 @@ public class CardDB : MonoBehaviour
     public LootInfo[] rare;
     public LootInfo[] epic;
     public LootInfo[] legendary;
+
+    [Header("Monsters")]
+    public MonsterInfo[] monsters;
+    public MonsterInfo[] boss;
 }

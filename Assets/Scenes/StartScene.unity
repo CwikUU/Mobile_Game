@@ -716,6 +716,21 @@ MonoBehaviour:
   - lootName: l5
     lootDescription: 
     lootPrefab: {fileID: 5286618771467689086, guid: ce857a21d94511c48872db7e411d0ce7, type: 3}
+  monsters:
+  - monsterName: test
+    monsterHP: 10
+    attacks:
+    - attack: 1
+      block: 0
+      actionValue: 10
+    - attack: 0
+      block: 1
+      actionValue: 10
+    - attack: 1
+      block: 1
+      actionValue: 10
+    monsterPrefab: {fileID: 0}
+  boss: []
 --- !u!1 &178585002
 GameObject:
   m_ObjectHideFlags: 0
