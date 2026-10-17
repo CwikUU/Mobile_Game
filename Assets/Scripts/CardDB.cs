@@ -22,6 +22,7 @@ public class MonsterInfo
 {
     public string monsterName;
     public int monsterHP;
+    public int block;
     [Tooltip("element0 - turn1 , element1 - turn2 , ...")]
     public MonsterAttackTurn[] attacks;
     public GameObject monsterPrefab;

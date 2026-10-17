@@ -7,6 +7,7 @@ public class PlayerInfo : MonoBehaviour
 
     [Header("Player Info")]
     public string className;
+    public int armor = 0;
     public int healthMax;
     public int health;
     public int staminaMax;
@@ -73,5 +74,19 @@ public class PlayerInfo : MonoBehaviour
         {
             mana = manaMax;
         }
+    }
+
+    public void DamagePlayer(int dmg)
+    {
+        int dmgLeft = dmg;
+        // some day add reduction by equpid armor
+        if (armor != 0)
+        {
+            armor -= dmgLeft;
+            if (armor < 0) dmgLeft = -1*armor;
+            armor = 0;
+        }
+
+        health -= dmgLeft;
     }
 }
